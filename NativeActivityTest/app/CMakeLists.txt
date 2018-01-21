@@ -41,3 +41,23 @@ target_link_libraries( # Specifies the target library.
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib} )
+
+
+#Add YSD Hoshino Hitoshi
+
+# glue のインクルードパスを追加
+include_directories(${ANDROID_NDK}/sources/android/native_app_glue)
+
+# android_native_app_glue.c もコンパイル対象にする
+# 長いので変数に入れておく
+set(NA_src ${ANDROID_NDK}/sources/android/native_app_glue/android_native_app_glue.c)
+
+#android や log ようのライブラリも追加しておく
+target_link_libraries(
+    native-lib
+    android
+    log)
+
+# 実行クラスの追加
+add_executable(Main src/main/cpp/main.cpp)
+
